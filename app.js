@@ -16,12 +16,6 @@ app.get("/", (req, res) => {
   res.render("index.html");
 });
 
-tgBot.start((ctx) => ctx.reply("Welcome!"));
-
-tgBot.help((ctx) => ctx.reply("Send me a sticker"));
-
-tgBot.on("sticker", (ctx) => ctx.reply("👍"));
-
 tgBot.launch();
 
 app.listen(port, () => {
