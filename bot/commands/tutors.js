@@ -12,12 +12,16 @@ function getTutorProfile(ctx) {
   // TODO: Extract TG info
   // Query DB if not cached
   // Return the profile in chat
+  console.log(ctx.update.message.from);
+  ctx.reply("你的導師資料");
 }
 
 function updateTutorProfile(ctx) {
   // TODO: Extract TG info
+  console.log(ctx.update.message.from);
+  console.log(ctx.update.message.chat);
+  console.log(ctx.update.message.entities);
 }
-
 module.exports = {
   updateTutorProfile,
   getTutorProfile,
