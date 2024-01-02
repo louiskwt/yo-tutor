@@ -24,15 +24,15 @@ tgBot.help((ctx) => ctx.reply("Send me a sticker"));
 
 // Tutor Commands
 tgBot.command(menu.rt.command, (ctx) => registerTutor(ctx));
-tgBot.command("tprofile", (ctx) => getTutorProfile(ctx));
-tgBot.command("utprofile", (ctx) => updateTutorProfile(ctx));
+tgBot.command(menu.tp.command, (ctx) => getTutorProfile(ctx));
+tgBot.command(menu.utp.command, (ctx) => updateTutorProfile(ctx));
 
 // Student Commands
 tgBot.command(menu.rs.command, (ctx) => ctx.reply("你已經登記成為學生，請等待管理員審核"));
 
 // Cases Command
-tgBot.command("tp", (ctx) => ctx.reply("最新導師資料"));
-tgBot.command("stp", (ctx) => ctx.reply("最新學生資料"));
+tgBot.command(menu.tc.command, (ctx) => ctx.reply("最新導師資料"));
+tgBot.command(menu.sc.command, (ctx) => ctx.reply("最新學生資料"));
 
 tgBot.on("sticker", (ctx) => ctx.reply("👍"));
 
