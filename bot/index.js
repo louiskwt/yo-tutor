@@ -1,5 +1,5 @@
 const {Telegraf, Telegram} = require("telegraf");
-const {registerTutor, getTutorProfile, updateTutorProfile} = require("./commands/tutors");
+const {registerTutor, getTutorProfile, updateTutorProfile, askTutorGender, askTutorLocation} = require("./commands/tutors");
 const menu = require("./menu");
 
 const TG_BOT_TOKEN = process.env.TG_BOT_TOKEN;
@@ -25,17 +25,11 @@ tgBot.help((ctx) => {
 
 // Tutor Commands
 
-tgBot.command(menu.rt.command, (ctx) => registerTutor(ctx));
+tgBot.command(menu.rt.command, (ctx) => askTutorGender(ctx));
 
-tgBot.hears("男導師", (ctx) => {
-  console.log(ctx);
-  ctx.reply("你是導師");
-});
+tgBot.hears("男導師", (ctx) => askTutorLocation(ctx));
 
-tgBot.hears("女導師", (ctx) => {
-  console.log(ctx);
-  ctx.reply("你是導師");
-});
+tgBot.hears("女導師", (ctx) => askTutorLocation(ctx));
 
 tgBot.command(menu.tp.command, (ctx) => getTutorProfile(ctx));
 tgBot.command(menu.utp.command, (ctx) => updateTutorProfile(ctx));
