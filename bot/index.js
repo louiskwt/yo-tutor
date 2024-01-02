@@ -24,7 +24,19 @@ tgBot.help((ctx) => {
 });
 
 // Tutor Commands
+
 tgBot.command(menu.rt.command, (ctx) => registerTutor(ctx));
+
+tgBot.hears("男導師", (ctx) => {
+  console.log(ctx);
+  ctx.reply("你是導師");
+});
+
+tgBot.hears("女導師", (ctx) => {
+  console.log(ctx);
+  ctx.reply("你是導師");
+});
+
 tgBot.command(menu.tp.command, (ctx) => getTutorProfile(ctx));
 tgBot.command(menu.utp.command, (ctx) => updateTutorProfile(ctx));
 
