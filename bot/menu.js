@@ -7,6 +7,14 @@ const menu = {
     command: "rs",
     description: "登記成為學生",
   },
+  tc: {
+    command: "tc",
+    description: "尋找導師",
+  },
+  sc: {
+    command: "sc",
+    description: "尋找學生",
+  },
   tp: {
     command: "mytprofile",
     description: "查看你的導師資料",
@@ -22,14 +30,6 @@ const menu = {
   ustp: {
     command: "updatestprofile",
     description: "更新你的學生資料",
-  },
-  tc: {
-    command: "tc",
-    description: "尋找導師",
-  },
-  sc: {
-    command: "sc",
-    description: "尋找學生",
   },
 };
 
