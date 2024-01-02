@@ -28,9 +28,12 @@ const locationKeyboard = Markup.keyboard(areaAndDistrictOptions);
 
 const subjectOptions = [];
 
-const subjects = Object.keys(SUBJECTS).map((key) => {
-  return SUBJECTS[key];
-});
+const subjects = [
+  ...Object.keys(SUBJECTS).map((key) => {
+    return SUBJECTS[key];
+  }),
+  "確認可教科目 ✅",
+];
 
 for (let i = 0; i < subjects.length; i += chunkSize) {
   subjectOptions.push(subjects.slice(i, i + chunkSize));
