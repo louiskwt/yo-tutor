@@ -18,7 +18,7 @@ const DISTRICTS = {
   WC: "灣仔區",
 };
 
-const AREA = {
+const AREAS = {
   HK: "香港島",
   KLN: "九龍",
   NT: "新界",
@@ -26,5 +26,5 @@ const AREA = {
 
 module.exports = {
   DISTRICTS,
-  AREA,
+  AREAS,
 };
