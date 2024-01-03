@@ -1,13 +1,9 @@
 const {Markup} = require("telegraf");
-const {GENDER} = require("../constants/gender");
+const {tutorGenderOptions} = require("../constants/gender");
 const {teacingAreaAndDistrictOptions} = require("../constants/location");
 const {SUBJECTS} = require("../constants/subjects");
 
-const chunkSize = 3;
-const genderOptions = Object.keys(GENDER).map((key) => {
-  return `${GENDER[key]}導師`;
-});
-const genderKeyboard = Markup.keyboard(genderOptions).oneTime().resize();
+const genderKeyboard = Markup.keyboard(tutorGenderOptions).oneTime().resize();
 
 const locationKeyboard = Markup.keyboard(teacingAreaAndDistrictOptions);
 
