@@ -1,30 +1,15 @@
 const {Markup} = require("telegraf");
 const {GENDER} = require("../constants/gender");
-const {DISTRICTS, AREAS} = require("../constants/location");
+const {teacingAreaAndDistrictOptions} = require("../constants/location");
 const {SUBJECTS} = require("../constants/subjects");
 
+const chunkSize = 3;
 const genderOptions = Object.keys(GENDER).map((key) => {
   return `${GENDER[key]}導師`;
 });
 const genderKeyboard = Markup.keyboard(genderOptions).oneTime().resize();
 
-const areaAndDistricts = [
-  ...Object.keys(AREAS).map((key) => {
-    return AREAS[key];
-  }),
-  ...Object.keys(DISTRICTS).map((key) => {
-    return DISTRICTS[key];
-  }),
-  "確認教學地點 ✅",
-];
-
-chunkSize = 3;
-const areaAndDistrictOptions = [];
-for (let i = 0; i < areaAndDistricts.length; i += chunkSize) {
-  areaAndDistrictOptions.push(areaAndDistricts.slice(i, i + chunkSize));
-}
-
-const locationKeyboard = Markup.keyboard(areaAndDistrictOptions);
+const locationKeyboard = Markup.keyboard(teacingAreaAndDistrictOptions);
 
 const subjectOptions = [];
 
@@ -47,7 +32,7 @@ async function askTutorGender(ctx) {
   await ctx.reply("你是...", genderKeyboard);
 }
 
-async function askTutorLocation(ctx) {
+function askTutorLocation(ctx) {
   return ctx.reply("教學地點？ 可以多選，選好之後按 '確認教學地點 ✅' 提交", locationKeyboard);
 }
 

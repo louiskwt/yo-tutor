@@ -1,3 +1,5 @@
+const chunkSize = require("./chunkSize");
+
 const DISTRICTS = {
   CW: "中西區",
   E: "東區",
@@ -24,7 +26,28 @@ const AREAS = {
   NT: "新界",
 };
 
+const CONFIRM_T_LOCATION = "確認教學地點 ✅";
+
+const teachingAreaAndDistricts = [
+  ...Object.keys(AREAS).map((key) => {
+    return AREAS[key];
+  }),
+  ...Object.keys(DISTRICTS).map((key) => {
+    return DISTRICTS[key];
+  }),
+  CONFIRM_T_LOCATION,
+];
+
+const teacingAreaAndDistrictOptions = [];
+
+for (let i = 0; i < teachingAreaAndDistricts.length; i += chunkSize) {
+  teacingAreaAndDistrictOptions.push(areaAndDistricts.slice(i, i + chunkSize));
+}
+
 module.exports = {
   DISTRICTS,
   AREAS,
+  CONFIRM_T_LOCATION,
+  teachingAreaAndDistricts,
+  teacingAreaAndDistrictOptions,
 };
