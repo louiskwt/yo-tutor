@@ -9,10 +9,10 @@ const locationKeyboard = Markup.keyboard(teacingAreaAndDistrictOptions);
 
 const subjectKeyboard = Markup.keyboard(tutorSubjectOptions);
 
-async function askTutorGender(ctx) {
+function askTutorGender(ctx) {
   // TODO: Extract tg related info
   // TODO: Ask tutor to enter a bio
-  await ctx.reply("你是...", genderKeyboard);
+  return ctx.reply("你是...", genderKeyboard);
 }
 
 function askTutorLocation(ctx) {
