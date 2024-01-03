@@ -1,26 +1,13 @@
 const {Markup} = require("telegraf");
 const {tutorGenderOptions} = require("../constants/gender");
 const {teacingAreaAndDistrictOptions} = require("../constants/location");
-const {SUBJECTS} = require("../constants/subjects");
+const {tutorSubjectOptions} = require("../constants/subjects");
 
 const genderKeyboard = Markup.keyboard(tutorGenderOptions).oneTime().resize();
 
 const locationKeyboard = Markup.keyboard(teacingAreaAndDistrictOptions);
 
-const subjectOptions = [];
-
-const subjects = [
-  ...Object.keys(SUBJECTS).map((key) => {
-    return SUBJECTS[key];
-  }),
-  "確認可教科目 ✅",
-];
-
-for (let i = 0; i < subjects.length; i += chunkSize) {
-  subjectOptions.push(subjects.slice(i, i + chunkSize));
-}
-
-const subjectKeyboard = Markup.keyboard(subjectOptions);
+const subjectKeyboard = Markup.keyboard(tutorSubjectOptions);
 
 async function askTutorGender(ctx) {
   // TODO: Extract tg related info

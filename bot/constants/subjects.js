@@ -1,3 +1,5 @@
+const chunkSize = require("./chunkSize");
+
 const SUBJECTS = {
   ALL: "全科",
   PCHIN: "小學中文",
@@ -26,6 +28,22 @@ const SUBJECTS = {
   OTHER: "其他科目",
 };
 
+const CONFIRM_T_SUBJECTS = "確認可教科目 ✅";
+
+const T_SUBJECTS = [
+  ...Object.keys(SUBJECTS).map((key) => {
+    return SUBJECTS[key];
+  }),
+  CONFIRM_T_SUBJECTS,
+];
+
+const tutorSubjectOptions = [];
+
+for (let i = 0; i < T_SUBJECTS.length; i += chunkSize) {
+  tutorSubjectOptions.push(T_SUBJECTS.slice(i, i + chunkSize));
+}
+
 module.exports = {
   SUBJECTS,
+  tutorSubjectOptions,
 };
