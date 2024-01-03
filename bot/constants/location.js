@@ -41,7 +41,7 @@ const teachingAreaAndDistricts = [
 const teacingAreaAndDistrictOptions = [];
 
 for (let i = 0; i < teachingAreaAndDistricts.length; i += chunkSize) {
-  teacingAreaAndDistrictOptions.push(areaAndDistricts.slice(i, i + chunkSize));
+  teacingAreaAndDistrictOptions.push(teachingAreaAndDistricts.slice(i, i + chunkSize));
 }
 
 module.exports = {
