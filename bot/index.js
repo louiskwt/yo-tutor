@@ -1,8 +1,9 @@
 const {Telegraf, Telegram} = require("telegraf");
-const {registerTutor, getTutorProfile, updateTutorProfile, askTutorGender, askTutorLocation, askTutorSubject} = require("./commands/tutors");
+const {registerTutor, getTutorProfile, updateTutorProfile, askTutorGender, askTutorLocation, askTutorSubject, askTutorPrice} = require("./commands/tutors");
 const menu = require("./menu");
 const {tutorGenderOptions} = require("./constants/gender");
 const {CONFIRM_T_LOCATION} = require("./constants/location");
+const {CONFIRM_T_SUBJECTS} = require("./constants/subjects");
 
 const TG_BOT_TOKEN = process.env.TG_BOT_TOKEN;
 
@@ -35,6 +36,8 @@ tutorGenderOptions.map((option) => {
 });
 
 tgBot.hears(CONFIRM_T_LOCATION, (ctx) => askTutorSubject(ctx));
+
+tgBot.hears(CONFIRM_T_SUBJECTS, (ctx) => askTutorPrice(ctx));
 
 // Student Commands
 tgBot.command(menu.rs.command, (ctx) => ctx.reply("你已經登記成為學生，請等待管理員審核"));

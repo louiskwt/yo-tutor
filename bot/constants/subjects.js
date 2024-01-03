@@ -46,4 +46,5 @@ for (let i = 0; i < T_SUBJECTS.length; i += chunkSize) {
 module.exports = {
   SUBJECTS,
   tutorSubjectOptions,
+  CONFIRM_T_SUBJECTS,
 };

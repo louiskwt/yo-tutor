@@ -1,13 +1,16 @@
 const {Markup} = require("telegraf");
 const {tutorGenderOptions} = require("../constants/gender");
-const {teacingAreaAndDistrictOptions} = require("../constants/location");
-const {tutorSubjectOptions} = require("../constants/subjects");
+const {teacingAreaAndDistrictOptions, CONFIRM_T_LOCATION} = require("../constants/location");
+const {tutorSubjectOptions, CONFIRM_T_SUBJECTS} = require("../constants/subjects");
+const {T_PRICE_CONFIRMATION, tutorPriceOptions} = require("../constants/price");
 
 const genderKeyboard = Markup.keyboard(tutorGenderOptions).oneTime().resize();
 
 const locationKeyboard = Markup.keyboard(teacingAreaAndDistrictOptions);
 
 const subjectKeyboard = Markup.keyboard(tutorSubjectOptions);
+
+const priceKeyboard = Markup.keyboard(tutorPriceOptions);
 
 function askTutorGender(ctx) {
   // TODO: Extract tg related info
@@ -16,11 +19,15 @@ function askTutorGender(ctx) {
 }
 
 function askTutorLocation(ctx) {
-  return ctx.reply("教學地點？ 可以多選，選好之後按 '確認教學地點 ✅' 提交", locationKeyboard);
+  return ctx.reply(`教學地點？ 可以多選，選好之後按 '${CONFIRM_T_LOCATION}' 提交`, locationKeyboard);
 }
 
 function askTutorSubject(ctx) {
-  return ctx.reply("你可教的科目？ 可以多選，選好之後按 '確認可教科目 ✅' 提交", subjectKeyboard);
+  return ctx.reply(`你可教的科目？ 可以多選，選好之後按 '${CONFIRM_T_SUBJECTS}' 提交`, subjectKeyboard);
+}
+
+function askTutorPrice(ctx) {
+  return ctx.reply(`你期望的收費？ 可以多選，選好之後按 '${T_PRICE_CONFIRMATION}' 提交`, priceKeyboard);
 }
 
 function getTutorProfile(ctx) {
@@ -43,4 +50,5 @@ module.exports = {
   askTutorGender,
   askTutorLocation,
   askTutorSubject,
+  askTutorPrice,
 };
