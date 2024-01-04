@@ -17,8 +17,9 @@ nunjucks.configure("views", {
 let db = new sqlite3.Database("./db/yo-tutor.db", sqlite3.OPEN_READWRITE, (err) => {
   if (err) {
     console.error(err.message);
+  } else {
+    console.log("Connected to the yo-tutor database.");
   }
-  console.log("Connected to the yo-tutor database.");
 });
 
 app.get("/", (req, res) => {
