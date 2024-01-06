@@ -22,6 +22,17 @@ tgBot.telegram.setMyCommands(commandArr);
 
 tgBot.start(async (ctx) => {
   ctx.reply(startText);
+  setTimeout(() => {
+    ctx.reply("你的名字？");
+  }, 2000);
+});
+
+tgBot.on("text", (ctx) => {
+  // no name
+  const hasName = false;
+  if (!hasName) {
+    ctx.reply(`Yo ${ctx.update.message.text}~`);
+  }
 });
 
 tgBot.help((ctx) => {
