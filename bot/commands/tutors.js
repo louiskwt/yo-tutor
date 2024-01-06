@@ -13,15 +13,6 @@ const subjectKeyboard = Markup.keyboard(tutorSubjectOptions);
 
 const priceKeyboard = Markup.keyboard(tutorPriceOptions);
 
-function askTutorName(ctx, bot) {
-  ctx.reply("你的名字？");
-  bot.on("message", (ctx) => {
-    console.log(ctx.message.text);
-    ctx.reply("Yo, " + ctx.message.text + "!");
-    askTutorGender(ctx);
-  });
-}
-
 function askTutorGender(ctx) {
   return ctx.reply("你是...", genderKeyboard);
 }

@@ -29,7 +29,7 @@ tgBot.help((ctx) => {
 });
 
 // Tutor Commands
-tgBot.command(menu.rt.command, (ctx) => askTutorName(ctx, tgBot));
+tgBot.command(menu.rt.command, (ctx) => askTutorGender(ctx));
 tgBot.command(menu.tp.command, (ctx) => getTutorProfile(ctx));
 tgBot.command(menu.utp.command, (ctx) => updateTutorProfile(ctx));
 
