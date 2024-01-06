@@ -1,5 +1,5 @@
 const {Telegraf, Telegram} = require("telegraf");
-const {registerTutor, getTutorProfile, updateTutorProfile, askTutorGender, askTutorLocation, askTutorSubject, askTutorPrice, finishTutorRegistration} = require("./commands/tutors");
+const {registerTutor, getTutorProfile, updateTutorProfile, askTutorGender, askTutorLocation, askTutorSubject, askTutorPrice, finishTutorRegistration, askTutorName} = require("./commands/tutors");
 const menu = require("./menu");
 const {tutorGenderOptions} = require("./constants/gender");
 const {CONFIRM_T_LOCATION} = require("./constants/location");
@@ -29,7 +29,7 @@ tgBot.help((ctx) => {
 });
 
 // Tutor Commands
-tgBot.command(menu.rt.command, (ctx) => askTutorGender(ctx));
+tgBot.command(menu.rt.command, (ctx) => askTutorName(ctx, tgBot));
 tgBot.command(menu.tp.command, (ctx) => getTutorProfile(ctx));
 tgBot.command(menu.utp.command, (ctx) => updateTutorProfile(ctx));
 
