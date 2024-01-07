@@ -18,15 +18,15 @@ function askTutorGender(ctx) {
 }
 
 function askTutorLocation(ctx) {
-  return ctx.reply(`教學地點？ 可以多選，選好之後按 '${CONFIRM_T_LOCATION}' 提交`, locationKeyboard);
+  return ctx.reply(`教學地點？ (可以多選)\n選好之後按 '${CONFIRM_T_LOCATION}' 提交`, locationKeyboard);
 }
 
 function askTutorSubject(ctx) {
-  return ctx.reply(`你可教的科目？ 可以多選，選好之後按 '${CONFIRM_T_SUBJECTS}' 提交`, subjectKeyboard);
+  return ctx.reply(`你可教的科目？ (可以多選)\n選好之後按 '${CONFIRM_T_SUBJECTS}' 提交`, subjectKeyboard);
 }
 
 function askTutorPrice(ctx) {
-  return ctx.reply(`你期望的收費？ 可以多選，選好之後按 '${T_PRICE_CONFIRMATION}' 提交`, priceKeyboard);
+  return ctx.reply(`你期望的收費？ (可以多選)\n選好之後按 '${T_PRICE_CONFIRMATION}' 提交`, priceKeyboard);
 }
 
 function finishTutorRegistration(ctx) {

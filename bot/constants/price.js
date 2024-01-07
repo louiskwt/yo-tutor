@@ -6,7 +6,7 @@ const PRICE = {
   third: "300 - 400 HKD / hr",
   fourth: "400 - 500 HKD / hr",
   fifth: "500 - 600 HKD / hr",
-  other: "Other",
+  other: "按情況決定",
 };
 
 const T_PRICE_CONFIRMATION = "確認收費👍";
