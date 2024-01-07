@@ -27,14 +27,6 @@ tgBot.start(async (ctx) => {
   }, 2000);
 });
 
-tgBot.on("text", (ctx) => {
-  // no name
-  const hasName = false;
-  if (!hasName) {
-    ctx.reply(`Yo ${ctx.update.message.text}~`);
-  }
-});
-
 tgBot.help((ctx) => {
   ctx.reply(helpText);
 });
