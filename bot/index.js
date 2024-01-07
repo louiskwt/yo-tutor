@@ -1,5 +1,5 @@
-const {Telegraf, Telegram} = require("telegraf");
-const {registerTutor, getTutorProfile, updateTutorProfile, askTutorGender, askTutorLocation, askTutorSubject, askTutorPrice, finishTutorRegistration, askTutorName} = require("./commands/tutors");
+const {Telegraf} = require("telegraf");
+const {getTutorProfile, updateTutorProfile, askTutorGender, askTutorLocation, askTutorSubject, askTutorPrice, finishTutorRegistration, askTutorName} = require("./commands/tutors");
 const menu = require("./menu");
 const {tutorGenderOptions} = require("./constants/gender");
 const {CONFIRM_T_LOCATION} = require("./constants/location");
