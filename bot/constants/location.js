@@ -26,9 +26,12 @@ const AREAS = {
   NT: "新界",
 };
 
+const ONLINE = "網上教學";
+
 const CONFIRM_T_LOCATION = "確認教學地點 ✅";
 
 const teachingAreaAndDistricts = [
+  ONLINE,
   ...Object.keys(AREAS).map((key) => {
     return AREAS[key];
   }),
