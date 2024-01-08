@@ -4,6 +4,7 @@ const {teacingAreaAndDistrictOptions, CONFIRM_T_LOCATION} = require("../constant
 const {tutorSubjectOptions, CONFIRM_T_SUBJECTS} = require("../constants/subjects");
 const {T_PRICE_CONFIRMATION, tutorPriceOptions} = require("../constants/price");
 const tutorContent = require("../content/tutorContent");
+const {tutorBioOptions, T_BIO_CONFIRMATION} = require("../constants/bio");
 
 const genderKeyboard = Markup.keyboard(tutorGenderOptions).resize();
 
@@ -12,6 +13,8 @@ const locationKeyboard = Markup.keyboard(teacingAreaAndDistrictOptions);
 const subjectKeyboard = Markup.keyboard(tutorSubjectOptions);
 
 const priceKeyboard = Markup.keyboard(tutorPriceOptions);
+
+const bioKeyboard = Markup.keyboard(tutorBioOptions);
 
 function askTutorGender(ctx) {
   return ctx.reply("你是...", genderKeyboard);
@@ -27,6 +30,10 @@ function askTutorSubject(ctx) {
 
 function askTutorPrice(ctx) {
   return ctx.reply(`你期望的收費？ (可以多選)\n選好之後按 '${T_PRICE_CONFIRMATION}' 提交\n註冊後可以隨時更改`, priceKeyboard);
+}
+
+function askTutorBio(ctx) {
+  return ctx.reply(`請輸入你的自我介紹... (可以多選)\n選好之後按 '${T_BIO_CONFIRMATION}' 提交\n註冊後可以隨時更改\n`, bioKeyboard);
 }
 
 function finishTutorRegistration(ctx) {
@@ -54,5 +61,6 @@ module.exports = {
   askTutorLocation,
   askTutorSubject,
   askTutorPrice,
+  askTutorBio,
   finishTutorRegistration,
 };
