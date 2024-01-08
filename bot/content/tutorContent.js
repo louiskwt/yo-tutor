@@ -7,7 +7,7 @@ const registrationConfirmation = `你已經完成登記，並獲得 3 個 Yo-poi
 你便需要使用 Yo-points 🔋\n
 每次聯絡學生會扣除 1 個 Yo-point
 當你的 Yo-points 用完之後...\n
-你可以在 menu 購買或者訂閱月費計劃
+你可以在 menu 購買或者訂閱月費計劃 ⭐️\n
 `;
 
 const tutorContent = {
