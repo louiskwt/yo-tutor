@@ -70,7 +70,6 @@ async function askTutorLocation(ctx) {
 }
 
 function askTutorSubject(ctx) {
-  console.log(ctx.update.message);
   return ctx.reply(`你可教的科目？ (可以多選)\n選好之後按 '${CONFIRM_T_SUBJECTS}' 提交\n註冊後可以隨時更改`, subjectKeyboard);
 }
 
