@@ -7,6 +7,7 @@ const {CONFIRM_T_SUBJECTS} = require("./constants/subjects");
 const {T_PRICE_CONFIRMATION} = require("./constants/price");
 const {startText, helpText} = require("./content/help");
 const {T_BASIC_BIO, T_BIO_CONFIRMATION} = require("./constants/bio");
+const db = require("../db/models");
 
 const TG_BOT_TOKEN = process.env.TG_BOT_TOKEN;
 
@@ -22,7 +23,22 @@ const tgBot = new Telegraf(TG_BOT_TOKEN);
 tgBot.telegram.setMyCommands(commandArr);
 
 tgBot.start(async (ctx) => {
+  console.log("ctx", ctx.update.message.from);
+
+  const {id} = ctx.update.message.from;
+
+  db.User.findOrCreate({
+    where: {
+      tgId: id,
+    },
+    defaults: {
+      tgId: id,
+    },
+  });
+
   ctx.reply(startText);
+
+  // db.User.findOrCreate({}
   setTimeout(() => {
     ctx.reply("你的名字？");
   }, 2000);
