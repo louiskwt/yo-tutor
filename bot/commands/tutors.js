@@ -19,24 +19,36 @@ const bioKeyboard = Markup.keyboard(tutorBioOptions);
 
 async function askTutorGender(ctx) {
   const {id} = ctx.update.message.from;
-  const user = await db.User.findOrCreate({
+  ctx.session ??= {tgId: id};
+  const hasUserInSession = ctx.session.userId;
+  let user = null;
+
+  if (!hasUserInSession) {
+    console.log("No user in session");
+    user = await db.User.findOrCreate({
+      where: {
+        tgId: id,
+      },
+      defaults: {
+        tgId: id,
+      },
+      returning: true,
+    });
+
+    ctx.session.userId = user[0].id;
+  }
+
+  const tutor = await db.Tutor.findOrCreate({
     where: {
-      tgId: id,
+      userId: user ? user[0].id : ctx.session.userId,
     },
     defaults: {
-      tgId: id,
+      userId: user ? user[0].id : ctx.session.userId,
     },
     returning: true,
   });
 
-  await db.Tutor.findOrCreate({
-    where: {
-      userId: user[0].id,
-    },
-    defaults: {
-      userId: user[0].id,
-    },
-  });
+  ctx.session.tutorId = tutor[0].id;
 
   return ctx.reply("你是...", genderKeyboard);
 }

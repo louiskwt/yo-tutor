@@ -1,4 +1,4 @@
-const {Telegraf} = require("telegraf");
+const {Telegraf, session} = require("telegraf");
 const {getTutorProfile, updateTutorProfile, askTutorGender, askTutorLocation, askTutorSubject, askTutorPrice, finishTutorRegistration, askTutorName, askTutorBio} = require("./commands/tutors");
 const menu = require("./menu");
 const {tutorGenderOptions} = require("./constants/gender");
@@ -20,21 +20,25 @@ const commandArr = Object.keys(menu).map((key) => {
 
 const tgBot = new Telegraf(TG_BOT_TOKEN);
 
+tgBot.use(session());
+
 tgBot.telegram.setMyCommands(commandArr);
 
 tgBot.start(async (ctx) => {
-  console.log("ctx", ctx.update.message.from);
-
   const {id} = ctx.update.message.from;
+  ctx.session ??= {tgId: id};
 
-  db.User.findOrCreate({
+  const user = await db.User.findOrCreate({
     where: {
       tgId: id,
     },
     defaults: {
       tgId: id,
     },
+    returning: true,
   });
+
+  ctx.session.userId = user[0].id;
 
   ctx.reply(startText);
 
