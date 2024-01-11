@@ -2,7 +2,7 @@ const {Telegraf} = require("telegraf");
 const {getTutorProfile, updateTutorProfile, askTutorGender, askTutorLocation, askTutorSubject, askTutorPrice, finishTutorRegistration, askTutorName, askTutorBio} = require("./commands/tutors");
 const menu = require("./menu");
 const {tutorGenderOptions} = require("./constants/gender");
-const {CONFIRM_T_LOCATION} = require("./constants/location");
+const {CONFIRM_T_LOCATION, teachingAreaAndDistricts} = require("./constants/location");
 const {CONFIRM_T_SUBJECTS} = require("./constants/subjects");
 const {T_PRICE_CONFIRMATION} = require("./constants/price");
 const {startText, helpText} = require("./content/help");
@@ -55,6 +55,49 @@ tgBot.command(menu.utp.command, (ctx) => updateTutorProfile(ctx));
 
 tutorGenderOptions.map((option) => {
   tgBot.hears(option, (ctx) => askTutorLocation(ctx));
+});
+
+teachingAreaAndDistricts.map((option) => {
+  // TODO: should use session to store userId and user input
+  const teachingLocations = [];
+  let userId = null;
+  tgBot.hears(option, async (ctx) => {
+    if (option !== CONFIRM_T_LOCATION) {
+      if (!userId) {
+        const {id} = ctx.update.message.from;
+        const user = await db.User.findOne({
+          where: {
+            tgId: id,
+          },
+          raw: true,
+        });
+        userId = user.id;
+      }
+      const location = ctx.update.message.text;
+      teachingLocations.push(location);
+    } else {
+      if (!userId) {
+        const {id} = ctx.update.message.from;
+        const user = await db.User.findOne({
+          where: {
+            tgId: id,
+          },
+          raw: true,
+        });
+        userId = user.id;
+      }
+      await db.Tutor.update(
+        {
+          locations: teachingLocations,
+        },
+        {
+          where: {
+            userId,
+          },
+        }
+      );
+    }
+  });
 });
 
 tgBot.hears(CONFIRM_T_LOCATION, (ctx) => askTutorSubject(ctx));
