@@ -5,6 +5,7 @@ const {tutorSubjectOptions, CONFIRM_T_SUBJECTS} = require("../constants/subjects
 const {T_PRICE_CONFIRMATION, tutorPriceOptions} = require("../constants/price");
 const tutorContent = require("../content/tutorContent");
 const {tutorBioOptions, T_BIO_CONFIRMATION} = require("../constants/bio");
+const db = require("../../db/models");
 
 const genderKeyboard = Markup.keyboard(tutorGenderOptions).resize();
 
@@ -16,7 +17,27 @@ const priceKeyboard = Markup.keyboard(tutorPriceOptions);
 
 const bioKeyboard = Markup.keyboard(tutorBioOptions);
 
-function askTutorGender(ctx) {
+async function askTutorGender(ctx) {
+  const {id} = ctx.update.message.from;
+  const user = await db.User.findOrCreate({
+    where: {
+      tgId: id,
+    },
+    defaults: {
+      tgId: id,
+    },
+    returning: true,
+  });
+
+  await db.Tutor.findOrCreate({
+    where: {
+      userId: user[0].id,
+    },
+    defaults: {
+      userId: user[0].id,
+    },
+  });
+
   return ctx.reply("你是...", genderKeyboard);
 }
 
