@@ -1,5 +1,5 @@
 const {Markup} = require("telegraf");
-const {tutorGenderOptions} = require("../constants/gender");
+const {tutorGenderOptions, GENDER} = require("../constants/gender");
 const {teacingAreaAndDistrictOptions, CONFIRM_T_LOCATION} = require("../constants/location");
 const {tutorSubjectOptions, CONFIRM_T_SUBJECTS} = require("../constants/subjects");
 const {T_PRICE_CONFIRMATION, tutorPriceOptions} = require("../constants/price");
@@ -41,7 +41,31 @@ async function askTutorGender(ctx) {
   return ctx.reply("你是...", genderKeyboard);
 }
 
-function askTutorLocation(ctx) {
+async function askTutorLocation(ctx) {
+  const genderResponse = ctx.update.message.text[0];
+
+  const genderKey = Object.keys(GENDER).find((k) => GENDER[k] === genderResponse);
+
+  const {id} = ctx.update.message.from;
+
+  const user = await db.User.findOne({
+    where: {
+      tgId: id,
+    },
+    raw: true,
+  });
+
+  await db.Tutor.update(
+    {
+      gender: genderKey,
+    },
+    {
+      where: {
+        userId: user.id,
+      },
+    }
+  );
+
   return ctx.reply(`教學地點？ (可以多選)\n選好之後按 '${CONFIRM_T_LOCATION}' 提交\n註冊後可以隨時更改`, locationKeyboard);
 }
 
