@@ -62,10 +62,28 @@ tutorGenderOptions.map((option) => {
 });
 
 teachingAreaAndDistricts.map((option) => {
-  // TODO: should use session to store userId and user input
   tgBot.hears(option, async (ctx) => {
     ctx.session ??= {};
+    const tgId = ctx.update.message.from.id;
+
     const {userId} = ctx.session;
+
+    if (!userId) {
+      ctx.session.tgId = tgId;
+
+      const user = await db.User.findOrCreate({
+        where: {
+          tgId,
+        },
+        defaults: {
+          tgId,
+        },
+        returning: true,
+      });
+
+      ctx.session.userId = user[0].id;
+    }
+
     ctx.session.locations ??= [];
     if (option !== CONFIRM_T_LOCATION) {
       ctx.session.locations.push(option);
