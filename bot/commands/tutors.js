@@ -58,16 +58,7 @@ async function askTutorLocation(ctx) {
 
   const genderKey = Object.keys(GENDER).find((k) => GENDER[k] === genderResponse);
 
-  await db.Tutor.update(
-    {
-      gender: genderKey,
-    },
-    {
-      where: {
-        userId: ctx.session.userId,
-      },
-    }
-  );
+  ctx.session.gender = genderKey;
 
   return ctx.reply(`教學地點？ (可以多選)\n選好之後按 '${CONFIRM_T_LOCATION}' 提交\n註冊後可以隨時更改`, locationKeyboard);
 }

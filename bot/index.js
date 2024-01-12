@@ -88,17 +88,6 @@ teachingAreaAndDistricts.map((option) => {
     if (option !== CONFIRM_T_LOCATION) {
       ctx.session.locations.push(option);
     } else {
-      await db.Tutor.update(
-        {
-          locations: ctx.session.locations,
-        },
-        {
-          where: {
-            userId,
-          },
-        }
-      );
-
       return askTutorSubject(ctx);
     }
   });
@@ -127,17 +116,6 @@ tutorSubjectOptions.map((option) => {
     if (option !== CONFIRM_T_SUBJECTS) {
       ctx.session.subjects.push(option);
     } else {
-      await db.Tutor.update(
-        {
-          subjects: ctx.session.subjects,
-        },
-        {
-          where: {
-            userId,
-          },
-        }
-      );
-
       return askTutorPrice(ctx);
     }
   });
