@@ -86,8 +86,6 @@ teachingAreaAndDistricts.map((option) => {
   });
 });
 
-tgBot.hears(CONFIRM_T_LOCATION, (ctx) => askTutorSubject(ctx));
-
 tgBot.hears(CONFIRM_T_SUBJECTS, (ctx) => askTutorPrice(ctx));
 
 tgBot.hears(T_PRICE_CONFIRMATION, (ctx) => askTutorBio(ctx));
