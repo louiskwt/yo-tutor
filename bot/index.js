@@ -3,7 +3,7 @@ const {getTutorProfile, updateTutorProfile, askTutorGender, askTutorLocation, as
 const menu = require("./menu");
 const {tutorGenderOptions} = require("./constants/gender");
 const {CONFIRM_T_LOCATION, teachingAreaAndDistricts} = require("./constants/location");
-const {CONFIRM_T_SUBJECTS} = require("./constants/subjects");
+const {CONFIRM_T_SUBJECTS, tutorSubjectOptions} = require("./constants/subjects");
 const {T_PRICE_CONFIRMATION} = require("./constants/price");
 const {startText, helpText} = require("./content/help");
 const {T_BASIC_BIO, T_BIO_CONFIRMATION} = require("./constants/bio");
@@ -104,7 +104,44 @@ teachingAreaAndDistricts.map((option) => {
   });
 });
 
-tgBot.hears(CONFIRM_T_SUBJECTS, (ctx) => askTutorPrice(ctx));
+tutorSubjectOptions.map((option) => {
+  tgBot.hears(option, async (ctx) => {
+    ctx.session ??= {};
+
+    const {userId} = ctx.session;
+    if (!userId) {
+      const user = await db.User.findOrCreate({
+        where: {
+          tgId: ctx.update.message.from.id,
+        },
+        defaults: {
+          tgId: ctx.update.message.from.id,
+        },
+        returning: true,
+      });
+      ctx.session.tgId = ctx.update.message.from.id;
+      ctx.session.userId = user[0].id;
+    }
+    ctx.session.subjects ??= [];
+
+    if (option !== CONFIRM_T_SUBJECTS) {
+      ctx.session.subjects.push(option);
+    } else {
+      await db.Tutor.update(
+        {
+          subjects: ctx.session.subjects,
+        },
+        {
+          where: {
+            userId,
+          },
+        }
+      );
+
+      return askTutorPrice(ctx);
+    }
+  });
+});
 
 tgBot.hears(T_PRICE_CONFIRMATION, (ctx) => askTutorBio(ctx));
 
