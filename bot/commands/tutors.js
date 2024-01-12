@@ -58,22 +58,13 @@ async function askTutorLocation(ctx) {
 
   const genderKey = Object.keys(GENDER).find((k) => GENDER[k] === genderResponse);
 
-  const {id} = ctx.update.message.from;
-
-  const user = await db.User.findOne({
-    where: {
-      tgId: id,
-    },
-    raw: true,
-  });
-
   await db.Tutor.update(
     {
       gender: genderKey,
     },
     {
       where: {
-        userId: user.id,
+        userId: ctx.session.userId,
       },
     }
   );

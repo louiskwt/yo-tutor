@@ -63,36 +63,16 @@ tutorGenderOptions.map((option) => {
 
 teachingAreaAndDistricts.map((option) => {
   // TODO: should use session to store userId and user input
-  const teachingLocations = [];
-  let userId = null;
   tgBot.hears(option, async (ctx) => {
+    ctx.session ??= {};
+    const {userId} = ctx.session;
+    ctx.session.locations ??= [];
     if (option !== CONFIRM_T_LOCATION) {
-      if (!userId) {
-        const {id} = ctx.update.message.from;
-        const user = await db.User.findOne({
-          where: {
-            tgId: id,
-          },
-          raw: true,
-        });
-        userId = user.id;
-      }
-      const location = ctx.update.message.text;
-      teachingLocations.push(location);
+      ctx.session.locations.push(option);
     } else {
-      if (!userId) {
-        const {id} = ctx.update.message.from;
-        const user = await db.User.findOne({
-          where: {
-            tgId: id,
-          },
-          raw: true,
-        });
-        userId = user.id;
-      }
       await db.Tutor.update(
         {
-          locations: teachingLocations,
+          locations: ctx.session.locations,
         },
         {
           where: {
@@ -100,6 +80,8 @@ teachingAreaAndDistricts.map((option) => {
           },
         }
       );
+
+      return askTutorSubject(ctx);
     }
   });
 });
