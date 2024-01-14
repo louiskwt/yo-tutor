@@ -9,6 +9,7 @@ const {startText, helpText} = require("./content/help");
 const {T_BASIC_BIO, T_BIO_CONFIRMATION} = require("./constants/bio");
 const db = require("../db/models");
 const tutorContent = require("./content/tutorContent");
+const studentContent = require("./content/studenContent");
 
 const TG_BOT_TOKEN = process.env.TG_BOT_TOKEN;
 
@@ -55,6 +56,9 @@ tgBot.help((ctx) => {
 
 // Tutor Commands
 tgBot.command(menu.rt.command, (ctx) => ctx.reply(tutorContent.tutorRegistration));
+
+// Student Commands
+tgBot.command(menu.rs.command, (ctx) => ctx.reply(studentContent.studentRegistration));
 // Cases Command
 tgBot.command(menu.fc.command, (ctx) => ctx.reply("最新導師資料"));
 tgBot.command(menu.fc.command, (ctx) => ctx.reply("最新學生資料"));
