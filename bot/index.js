@@ -1,12 +1,6 @@
 const {Telegraf, session} = require("telegraf");
-const {getTutorProfile, updateTutorProfile, askTutorGender, askTutorLocation, askTutorSubject, askTutorPrice, finishTutorRegistration, askTutorName, askTutorBio} = require("./commands/tutors");
 const menu = require("./menu");
-const {tutorGenderOptions} = require("./constants/gender");
-const {CONFIRM_T_LOCATION, teachingAreaAndDistricts} = require("./constants/location");
-const {CONFIRM_T_SUBJECTS, tutorSubjectOptions} = require("./constants/subjects");
-const {T_PRICE_CONFIRMATION} = require("./constants/price");
 const {startText, helpText} = require("./content/help");
-const {T_BASIC_BIO, T_BIO_CONFIRMATION} = require("./constants/bio");
 const db = require("../db/models");
 const tutorContent = require("./content/tutorContent");
 const studentContent = require("./content/studenContent");
@@ -43,11 +37,6 @@ tgBot.start(async (ctx) => {
   ctx.session.userId = user[0].id;
 
   ctx.reply(startText);
-
-  // db.User.findOrCreate({}
-  setTimeout(() => {
-    ctx.reply("你的名字？");
-  }, 2000);
 });
 
 tgBot.help((ctx) => {
