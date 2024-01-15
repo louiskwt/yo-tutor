@@ -23,7 +23,6 @@ tgBot.launch();
 app.listen(port, async () => {
   try {
     await db.sequelize.authenticate();
-    console.log("Database synced successfully.");
     console.log(`Example app listening on port ${port}`);
   } catch (error) {
     console.error("Unable to sync database:", error);
