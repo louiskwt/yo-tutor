@@ -14,25 +14,84 @@
             <p class="lead mb-5">新世代補習配對.</p>
             <div class="d-grid gap-3 justify-contenl-center mb-5 mt-3">
                 <button type="button" class="btn btn-primary btn-lg px-4 btn-block" data-bs-toggle="modal" data-bs-target="#form">立即填 Form 登記</button>
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4 btn-block">查詢補習個案</button>
+                <button type="button" class="btn btn-outline-secondary btn-lg px-4 btn-block" data-bs-toggle="modal" data-bs-target="#case">查詢補習個案</button>
                 <button type="button" class="btn btn-outline-secondary btn-lg px-4 btn-block">加入 TG 群</button>
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4 btn-block">關於YoTutor</button>
+                <button type="button" class="btn btn-outline-secondary btn-lg px-4 btn-block" data-bs-toggle="modal" data-bs-target="#about">關於YoTutor</button>
             </div>
             </div>
         </div>
 
         <!-- Modal -->
+        <div class="modal fade" id="case" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="case" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">查詢個案</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">個案編號</label>
+                        <input type="number" class="form-control" id="caseId">
+                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary">查詢</button>
+                </div>
+            </div>
+        </div>
+        </div>
 
         <!-- Modal -->
         <div class="modal fade" id="form" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="form" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">立即登記使用～</h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">查詢個案～</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body mx-auto">
                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSevTXv7NsxLOlYJlmzJcciJ617dZFRpiXqPGcCfCHIBqqVqMw/viewform?embedded=true" width="425" height="1668" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="about" data-bs-keyboard="false" tabindex="-1" aria-labelledby="about" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">關於YoTutor～</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body mx-auto">
+                <h3>Yo~ 我係 Yo Tutor</h3>
+
+
+                <p>使用 Yo Tutor，你可以：
+                    <br>
+                    <br>
+                    1️⃣ 免費配對學生或導師
+                    <br>
+                    2️⃣ 直接聯絡導師或學生
+                    <br>
+                    3️⃣ 讓學生或導師聯絡你
+                </p>
+
+                <h3>FAQ:</h3>
+
+                    <h4>Q: Yo Tutor 係咪免費？</h4>
+                    <br>
+                    <p>
+                    冇錯～使用 Yo Tutor 搵補習老師👩‍🏫 招收學生🧑‍🎓是免費的，每個補習個案/導師資訊會刊登 14 日
+                    </p>
+                    <p>
+                    如果你想延長刊登期限，你可以聯絡我哋，我哋會幫你處理～
+                    </p>
             </div>
             </div>
         </div>
