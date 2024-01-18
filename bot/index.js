@@ -48,9 +48,6 @@ tgBot.command(menu.rt.command, (ctx) => ctx.reply(tutorContent.tutorRegistration
 
 // Student Commands
 tgBot.command(menu.rs.command, (ctx) => ctx.reply(studentContent.studentRegistration));
-// Cases Command
-tgBot.command(menu.fc.command, (ctx) => ctx.reply("最新導師資料"));
-tgBot.command(menu.fc.command, (ctx) => ctx.reply("最新學生資料"));
 
 tgBot.on("sticker", (ctx) => ctx.reply("🥳"));
 
