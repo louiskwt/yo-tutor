@@ -6,4 +6,4 @@
 
 # Roadmap
 
-- Pre-release in Jan 2024 as a Service powered by Telegram
+- Pre-release in Jan 2024 as a Service powered by Telegram ❌
